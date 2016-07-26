@@ -1,4 +1,4 @@
-function J = plotLinear(theta,spikes,temps,binSize)
+function plotLinear(theta,spikes,temps,binSize)
 
         [p,dp] = getPoly(temps,3);
         [rate,tvec] = getRate(spikes,binSize);
@@ -6,7 +6,6 @@ function J = plotLinear(theta,spikes,temps,binSize)
         dtemp = polyval(dp,tvec);
         y = rate;
         X = [temp,dtemp];
-        J = costFunction(theta,X,y);
         figure()
         plot(tvec,y);
         hold on

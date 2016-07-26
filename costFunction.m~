@@ -4,8 +4,8 @@ function J = costFunction(theta,X,y)
     J = 0;
     cost = 0;
     
-    linear = X*theta(2:3);
-    nonLinear = theta(1) + sigmoid(linear,theta(4),theta(5),theta(6));
+    linear = X*theta(1:2);
+    nonLinear = theta(sigmoid(linear,theta(3),theta(4),theta(5));
     cost =(nonLinear-y);
     cost = cost.^(2);
     cost = sum(cost,1);
