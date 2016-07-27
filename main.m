@@ -1,24 +1,29 @@
 
 % COMMENTS
-%Is a sigmoid nonlinearity too simplistic?
+% Is a sigmoid nonlinearity too simplistic?
 % How can I determine optimum initial values for the regression? 
 % How would the optimum values be different if I optimised the linearity first
 % then the nonlinearity?
+% Maybe I shouldn't estimate the ramp with a smooth polynomial? Maybe the
+% small changes affect the firing rate?
+% Should change initial values to uniform distribution.
+% Need to thoroughly read into Matlab optimisation functions. 
+% Should possibly ignore trials 3 and 5, 6?
   
 %[spikes_A,temps_A] = getData('/home/daniel/Encoding Thermal Stimuli/A fibre ramp positions.xlsx');
 %[spikes_C,temps_C] = getData('/home/daniel/Encoding Thermal Stimuli/C fibre ramp positions.xlsx');
 
 disp('Data Loaded');
 
-t = constructTraining(spikes_A,temps_A,0.25);
+t = constructTraining(spikes_A([1 2 4 7 8 9]),temps_A([1 2 4 7 8 9]),0.25);
 y = t(:,3);
 X = t(:,1:2);
 %theta - r0, a, b, x0, L, k
 opt_theta = [0;0;0;0;0;0];
 opt_cost = Inf;
 
-for i = 1:50
-    initial = normrnd([0;0;0;0;0;0],[50,100,100,1000,80,20]');
+for i = 1:100
+    initial = [rand*50,rand*100,rand*100,rand*1000,rand*80,rand*20]';
     [theta,cost] = fminsearch(@(t)(abs(costFunction(t,X,y))),initial);
     if(cost < opt_cost)
         opt_cost = cost;
