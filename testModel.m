@@ -11,9 +11,9 @@ function testModel(theta,spikes,temp)
 %     title('Linearity');
 %     hold off
     
-%     figure()
-%     plot([-500:500],sigmoid([-500:500],theta(4),theta(5),theta(6)));
-%     title('Non-linearity');
+    figure()
+    plot([-500:500],sigmoid([-500:500],theta(4),theta(5),theta(6)));
+    title('Non-linearity');
     
     
     predict = theta(1) + sigmoid(linear,theta(4),theta(5),theta(6));
