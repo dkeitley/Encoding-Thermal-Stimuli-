@@ -1,8 +1,8 @@
-function testModel(theta,spikes,temp)
+function testModel(theta,spikes,temp,resting)
 
-    [p,dp,~] = getPoly(temp,3);
+    [p,dp,~] = getPoly(temp,5);
     [rate,tvec] = getRate(spikes,0.25);
-    linear = theta(2)*polyval(p,tvec) + theta(3)*polyval(dp,tvec);
+    linear = theta(1)*polyval(p,tvec) + theta(2)*polyval(dp,tvec);
     
 %     figure()
 %     plot(tvec,linear);
@@ -10,14 +10,14 @@ function testModel(theta,spikes,temp)
 %     plot(tvec,rate);
 %     title('Linearity');
 %     hold off
+%     
+%     figure()
+%     plot([-500:500],sigmoid([-500:500],theta(3),theta(4),theta(5)));
+%     title('Non-linearity');
+%     
     
-    figure()
-    plot([-500:500],sigmoid([-500:500],theta(4),theta(5),theta(6)));
-    title('Non-linearity');
-    
-    
-    predict = theta(1) + sigmoid(linear,theta(4),theta(5),theta(6));
-    spikeArray{1} = spikes;
+    predict = resting + sigmoid(linear,theta(3),theta(4),theta(5));
+ 
     figure()
     plot(tvec,rate);
     hold on
