@@ -1,5 +1,8 @@
+
+%binSize given in seconds
+% calculates rate in each binSize
 function [rate,tvec] = getRate(spikes,binSize)
-     %bin size given in seconds
+
      m = size(spikes,1);
      binSize2 = floor(binSize/(5*10^-5));
      rate = zeros(floor(m/binSize2),1);
@@ -14,6 +17,4 @@ function [rate,tvec] = getRate(spikes,binSize)
      end
      tvec = [binSize/2:binSize:binSize*numBins - binSize/2]';
      
-
-
 end

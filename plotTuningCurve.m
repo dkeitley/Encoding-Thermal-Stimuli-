@@ -1,4 +1,4 @@
-function plotTuningCurve(spikes,temps)
+function plotTuningCurve(spikes,temps,i)
 
     m = size(spikes');
     numTrials = m(1);
@@ -29,10 +29,12 @@ function plotTuningCurve(spikes,temps)
         end
     end
     
-    figure()
+    %figure()
+    subplot(3,6,i)
     plot([20:60]',rate);
-    xlabel('Temperature');
-    ylabel('Average Firing Rate (spikes/s)');
+    title(strcat('Trial',int2str(i)));
+%     xlabel('Temperature');
+%     ylabel('Average Firing Rate (spikes/s)');
 
 
 end

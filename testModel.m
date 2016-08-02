@@ -1,7 +1,7 @@
 function testModel(theta,spikes,temp,resting)
 
     [p,dp,~] = getPoly(temp,5);
-    [rate,tvec] = getRate(spikes,0.25);
+    [rate,tvec] = getRate(spikes,0.7);
     linear = theta(1)*polyval(p,tvec) + theta(2)*polyval(dp,tvec);
     
 %     figure()
