@@ -2,11 +2,9 @@ function testModel(theta,spikes,temp,resting)
 
     [p,dp,~] = getPoly(temp,5);
     [rate,tvec] = getRate(spikes,0.7);
-    temp_vals = polyval(p,tvec);
-    norm_temp = (temp_vals - mean(temp_vals))/(max(temp_vals)-min(temp_vals));
-    dtemp_vals = polyval(dp,tvec);
-    norm_dtemp = (dtemp_vals - mean(dtemp_vals))/(max(dtemp_vals)-min(dtemp_vals));
-    linear = theta(1)*norm_temp + theta(2)*norm_dtemp;
+    temp_values = polyval(p,tvec);
+    temp_values = temp_values - mean(n
+    linear = theta(1)*polyval(p,tvec) + theta(2)*polyval(dp,tvec);
     
 %     figure()
 %     plot(tvec,linear);
