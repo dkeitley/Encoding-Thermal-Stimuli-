@@ -5,6 +5,7 @@ function plotTuningCurve(spikes,temps,i)
     rate = [];
     
     for t = 20:60
+    for t = 0:0.12
         numSpikes = 0;
         totalDuration = 0;
         tempTrialNum = 0;
@@ -14,7 +15,8 @@ function plotTuningCurve(spikes,temps,i)
            [p,dp,tvec] = getPoly(temps{trial},5);
            temppoly = polyval(p,tvec);
            dtemppoly = polyval(dp,tvec);
-           window = find((t-0.5 < temppoly) & (t + 0.5 >= temppoly));
+           %window = find((t-0.5 < temppoly) & (t + 0.5 >= temppoly));
+           window = find((t-0.5 < dtemppoly) & (t + 0.5 >= dtemppoly));
            numSpikes = numSpikes + sum(spikes{trial}(window));
            duration = (max(window) - min(window))*(5*10^-5);
            if(isempty(duration) ~= 1)
@@ -28,7 +30,7 @@ function plotTuningCurve(spikes,temps,i)
         else
             % Using average time between the degree change
             avgDuration = totalDuration/tempTrialNum;
-            rate(t-19) = numSpikes/(tempTrialNum*avgDuration);  
+            rate(t-19) = numSpikes/(tempTrialNum*avgDuration);   
         end
     end
     
@@ -36,7 +38,6 @@ function plotTuningCurve(spikes,temps,i)
     subplot(3,6,i)
     range = find(rate ~=0);
     rate = rate(1:range(end));
-    size(rate)
     plot([20:size(rate,2)+19]',rate);
     title(strcat('Trial',int2str(i)));
 %     xlabel('Temperature');

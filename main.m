@@ -1,17 +1,11 @@
 
 % COMMENTS
-% Min found A: 122.8290
-% norm theta A: 0.4009   -0.0051    0.3689   -0.0817    0.3170
-
-% Min found B: 59.4609
-% norm theta B: 0.3568    0.4610   -0.0039    0.0423    0.1438
-
-% Look at similarlities between cells. Are they grouped?
-% Normalise the parameters - does the derivative have much effect? 
+% Group A1: 4,5,6,16,17
+% Group A2: 7,8,9,10,11,12
 % Exp 18 first ramp definitely slow?
   
-% [spikes_A,temps_A,resting_A] = getData('/home/daniel/Encoding Thermal Stimuli/A fibre ramp positions.xlsx');
-% [spikes_C,temps_C,resting_C] = getData('/home/daniel/Encoding Thermal Stimuli/C fibre ramp positions.xlsx');
+[spikes_A,temps_A,resting_A] = getData('/home/daniel/Encoding Thermal Stimuli/A fibre ramp positions.xlsx');
+[spikes_C,temps_C,resting_C] = getData('/home/daniel/Encoding Thermal Stimuli/C fibre ramp positions.xlsx');
 
 disp('Data Loaded');
 
@@ -22,7 +16,7 @@ X = [];
 r0 = [];
 
 if(A)
-    t = constructTraining(spikes_A([4,5,6,16,17]),temps_A([4,5,6,16,17]),resting_A([4,5,6,16,17]),0.25);
+    t = constructTraining(spikes_A([7,8,9,10,11,12]),temps_A([7,8,9,10,11,12]),resting_A([7,8,9,10,11,12]),0.2);
     y = t(:,4);
     X = t(:,2:3);
     r0 = t(:,1);
@@ -51,7 +45,3 @@ end
 disp('Theta found');
 norm_theta = theta/(sum(abs(theta)));
 
-%[a,b] = maximumLikelihood(X(:,1),y,X(:,2));
-%N = findNonLinear(opt_theta,X,y,50);
-%options = fitoptions('poly6','Lower',[0,0,0,0,0,0]);
-%N2 = fit(N(:,1),N(:,2),'poly9');

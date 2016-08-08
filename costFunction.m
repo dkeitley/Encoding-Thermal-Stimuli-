@@ -9,7 +9,6 @@ function J = costFunction(theta,X,y,r0)
     x0 = theta(3);
     L = theta(4);
     
-    
     linear = X(:,1:2)*theta(1:2);
     nonLinear = sigmoid(linear,x0,L,k);
     r = r0 + nonLinear;

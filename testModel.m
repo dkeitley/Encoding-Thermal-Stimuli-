@@ -1,7 +1,7 @@
 function testModel(theta,spikes,temp,resting)
 
     [p,dp,~] = getPoly(temp,5);
-    [rate,tvec] = getRate(spikes,0.7);
+    [rate,tvec] = getRate(spikes,0.2);
     temp_vals = polyval(p,tvec);
     norm_temp = (temp_vals - mean(temp_vals))/(max(temp_vals)-min(temp_vals));
     dtemp_vals = polyval(dp,tvec);
