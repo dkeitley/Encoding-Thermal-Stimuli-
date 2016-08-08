@@ -6,12 +6,13 @@ function [spikes,temps,resting] = getData(fileName)
 
     for i = 1:numFiles
         [fileData,raw_spikes,raw_temp] = parseFile(num,txt,i);
-        rampNum = fileData(3);
+        rampNum = fileData(2);
         resting_rate = fileData(2);
         
-        for j = 1:2:rampNum*2
-            ramp_start = fileData(3+j);
-            ramp_end = fileData(3+j+1);
+        for j = 1:3:rampNum*3
+            resting{k} = fileData(2+j);
+            ramp_start = fileData(2+j+1);
+            ramp_end = fileData(2+j+2);
             
             upTemp = interp(raw_temp,100);
             
@@ -20,7 +21,6 @@ function [spikes,temps,resting] = getData(fileName)
             
             temps{k} = cropTemp;
             spikes{k} = cropSpikes;
-            resting{k} = resting_rate;
             k = k + 1;
         end
     end
