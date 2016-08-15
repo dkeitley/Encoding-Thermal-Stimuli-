@@ -1,4 +1,15 @@
-function plotTuningCurve(spikes,temps,i)
+function [tvec,rate] = plotTuningCurve(spike,temp)
+
+    temps = {};
+    spikes = {};
+    if((iscell(spike) && iscell(temp)))
+        temps = temp;
+        spikes = spike;
+    else
+        temps{1} = temp;
+        spikes{1} = spike;
+        
+    end
 
     m = size(spikes');
     numTrials = m(1);
@@ -33,12 +44,13 @@ function plotTuningCurve(spikes,temps,i)
     end
     
     %figure()
-    subplot(3,6,i)
+    %subplot(3,6,i)
     range = find(rate ~=0);
     rate = rate(1:range(end));
-    size(rate)
-    plot([20:size(rate,2)+19]',rate);
-    title(strcat('Trial',int2str(i)));
+    tvec = [20:size(rate,2)+19]';
+  %  plot(tvec,rate);
+   % title(strcat('Trial',int2str(i)));
+    rate = rate';
 %     xlabel('Temperature');
 %     ylabel('Average Firing Rate (spikes/s)');
 
