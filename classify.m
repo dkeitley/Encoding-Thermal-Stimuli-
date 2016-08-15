@@ -1,8 +1,11 @@
-function classify(spikes,temp,i)
+function grad = classify(spikes,temp)
 
     [tvec,rate] = plotTuningCurve(spikes,temp);
-    thresh = find(rate > quantile(rate,0.75));
-    q = min(thresh);
+    thresh_length = ceil(0.1*length(rate));
+    indexes = find(rate > 0);
+    consec = diff(indexes);
+    q = indexes(min(strfind(consec',ones(1,thresh_length))))
+    
     
     rate = (rate-mean(rate))/(max(rate)-min(rate));
     tvec = (tvec - mean(tvec))/(max(tvec)-min(tvec));
@@ -12,15 +15,14 @@ function classify(spikes,temp,i)
     crop_rate = rate(q:m);
     
     p = polyfit(crop_tvec,crop_rate,1);
-    grad = polyder(p)
+    grad = polyder(p);
       
     
-    subplot(3,6,i)
+    figure()
     plot(tvec,rate);
     hold on
     plot(crop_tvec,crop_rate);
     plot(crop_tvec,polyval(p,crop_tvec))
-    title(strcat('Trial ',int2str(i)));
     
  
     if(grad > 2)
