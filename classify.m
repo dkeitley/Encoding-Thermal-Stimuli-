@@ -15,16 +15,13 @@ function grad = classify(spikes,temp,resting)
     end
     thresh_index = q-1;
     
-    rate = (rate-mean(rate))/(max(rate)-min(rate));
-    tvec = (tvec - mean(tvec))/(max(tvec)-min(tvec));
+    rate = (rate-mean(rate))/(std(rate));
+    tvec = (tvec - mean(tvec))/(std(tvec));
     m = size(rate,1);
     
     thresh_tvec = tvec(thresh_index:m);
     thresh_rate = rate(thresh_index:m);
-    
-    %what about if threshold classifier doesn't hold? 
-    % adjust baseline for 8
-    
+
     [amp,loc,~,prom] = findpeaks(thresh_rate,thresh_tvec);
     peak_index = Inf;
     

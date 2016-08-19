@@ -11,7 +11,8 @@ function J = costFunction(theta,X,y)
     r0 = X(:,1);
     
     linear = X(:,2:3)*theta(1:2);
-    r = r0 + sigmoid(linear,x0,L,k);
+    r = sigmoid(linear,x0,L,k);
+    %r = (r-max(r))/(max(r));
     cost =(r-y);
     cost2 = cost.^(2);
     J = sum(cost2,1);
