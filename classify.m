@@ -1,53 +1,34 @@
-function grad = classify(spikes,temp,resting)
+function [rise,fall,plat]  = classify(spikes,temps,resting)
 
-    [tvec,rate] = plotTuningCurve(spikes,temp);
-    l = length(rate);
-    
-    thresh_length = ceil(0.1*l);
-    indexes = find(rate > resting);
-    consec = diff(indexes);
-    q = indexes(min(strfind(consec',ones(1,thresh_length))));
-    
-    if(isempty(q))
-        grad = [];
-        disp('Error: No threshold temperature found.')
-        return ;
+    m = size(spikes,2);
+    grad = [];
+
+    k = 1;
+    for i = 1:m
+       g = peakGradient(spikes{i},temps{i},resting{i});
+       if(~isempty(g))
+           grad(k,:) = [i,g];
+           k = k + 1;
+       else
+           continue;
+       end
     end
-    thresh_index = q-1;
     
-    rate = (rate-mean(rate))/(std(rate));
-    tvec = (tvec - mean(tvec))/(std(tvec));
-    m = size(rate,1);
+    [idx,~] = kmeans(grad(:,2),3,'Replicates',10);
     
-    thresh_tvec = tvec(thresh_index:m);
-    thresh_rate = rate(thresh_index:m);
-
-    [amp,loc,~,prom] = findpeaks(thresh_rate,thresh_tvec);
-    peak_index = Inf;
+    class{1} = find(idx == 1);
+    mean1 = mean(grad(class{1},2));
+    class{2} = find(idx == 2);
+    mean2 = mean(grad(class{2},2));
+    class{3} = find(idx == 3);
+    mean3 = mean(grad(class{3},2));
     
-    while(peak_index >= ceil(0.9*l))
-        if(isempty(prom))
-            peak_index = thresh_index;
-            break;
-        else
-            [maxp,ind] = max(prom);
-            prom = prom(prom ~= maxp);
-            peak_index = find(tvec == loc(ind));
-        end
-    end
-            
-    peak_rate = rate(peak_index:end);
-    peak_tvec = tvec(peak_index:end);
-
-    p = polyfit(peak_tvec,peak_rate,1);
-    grad = polyder(p);
-      
-    figure()
-    plot(tvec,rate);
-    hold on
-    plot(thresh_tvec,thresh_rate);
-    plot(peak_tvec(1),peak_rate(1),'*g')
-    plot(peak_tvec,polyval(p,peak_tvec))
+    [~,imx] = max([mean1,mean2,mean3]);
+    rise = grad(class{imx},1);
+    [~,imn] = min([mean1,mean2,mean3]);
+    fall = grad(class{imn},1);
+    imd = setdiff([1,2,3],[imx,imn]);
+    plat = grad(class{imd},1);
     
-
+    
 end

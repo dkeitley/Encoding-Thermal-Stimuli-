@@ -1,4 +1,4 @@
-function compareSpikes(theta,spikes,temp)
+function S = compareSpikes(theta,spikes,temp)
 
     binSize = 0.25;
     dt = 5*10^-5;

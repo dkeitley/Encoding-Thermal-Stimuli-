@@ -9,9 +9,7 @@ function training = constructTraining(spikes,temps,resting,binSize)
         [rate,tvec] = getRate(spikes{i},binSize);
         rate = (rate-max(rate))/(max(rate));
         temp = polyval(p,tvec);
-        %temp = (temp - min(temp))/(max(temp)-min(temp));
         dtemp = polyval(dp,tvec);
-        %dtemp = (dtemp - min(dtemp))/(max(dtemp)-min(dtemp));
         
         training = [training;[ones(size(tvec))*resting{i},temp,dtemp,rate]];
     end

@@ -1,4 +1,12 @@
 
+% COMMENTS
+% having difficulties classifying with C trials 2 and 9. Maybe the resting
+% rate needs to be adjusted? 
+
+
+% LOAD DATA
+% CLASSIFY DATA
+% MODEL DATA
   
 [spikes_A,temps_A,resting_A] = getData('/home/daniel/Encoding Thermal Stimuli/A fibre ramp positions.xlsx');
 [spikes_C,temps_C,resting_C] = getData('/home/daniel/Encoding Thermal Stimuli/C fibre ramp positions.xlsx');

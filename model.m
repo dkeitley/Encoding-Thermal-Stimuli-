@@ -1,4 +1,6 @@
-function opt_theta = model(spikes,temps,resting)
+% best 0.01
+
+function [opt_theta,opt_cost] = model(spikes,temps,resting)
 
     A = true; 
     t = [];
@@ -14,8 +16,8 @@ function opt_theta = model(spikes,temps,resting)
     opt_theta = [0;0;0;0;0];
     opt_cost = Inf;
 
-    for i = 1:25
-        initial = [-1 + rand*2,-1 + rand*2,-1+ rand*2,-1+rand*2,-1+rand*2]';
+    for i = 1:75
+        initial = [-10 + rand*20,-10 + rand*20,-10+ rand*20,-10+rand*20,-10+rand*20]';
         [theta,cost] = fminsearch(@(t)(costFunction(t,X,y)),initial);
 
         if(cost < opt_cost)
@@ -26,7 +28,5 @@ function opt_theta = model(spikes,temps,resting)
 
     disp('Theta found');
     norm_theta = theta/(sum(abs(theta)));
-
-
 
 end
