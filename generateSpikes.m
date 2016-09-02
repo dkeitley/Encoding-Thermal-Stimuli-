@@ -1,6 +1,7 @@
-function S = generateSpikes(rate_poly,lambda,T)
+% Implementation of the acceptance-rejection method for generating events
+% driven by an inhomogeneous Poisson process. 
 
-    t = 0;
+function S = generateSpikes(rate_poly,lambda,T)
     n = 0;
     t = -log(rand)/lambda; 
     
@@ -9,7 +10,6 @@ function S = generateSpikes(rate_poly,lambda,T)
             n = n+1;
             S(n) = t;
         end
-        %exponential inverse transform
         t = t - log(rand)/lambda;
     end
     S = S';

@@ -12,7 +12,7 @@ function [tvec,rate] = plotTempResponse(spike,temp)
 
     numTrials = size(spikes',1);
     m = ceil(numTrials/6);
-    figure()
+    %figure()
     
      for trial = 1:numTrials
          %find spikes times within 1 degree temp range
@@ -35,10 +35,10 @@ function [tvec,rate] = plotTempResponse(spike,temp)
              subplot(m,6,trial)
          end
          range = find(rate ~=0);
-         rate = rate(1:range(end));
-         tvec = [20:size(rate,2)+19]';
+         rate = rate(1:range(end))';
+         tvec = [20:size(rate,1)+19]';
          plot(tvec,rate);
-         title(strcat('Trial',int2str(trial)));
+         %title(strcat('Trial',int2str(trial)));
 
      end
 end

@@ -33,8 +33,8 @@ function grad = peakGradient(spikes,temp,resting)
     rate = (rate-max(rate))/(max(rate));
     m = size(rate,1);
     
-    thresh_tvec = tvec(thresh_index:m);
-    thresh_rate = rate(thresh_index:m);
+    thresh_tvec = tvec(thresh_index:m)
+    thresh_rate = rate(thresh_index:m)
 
     [~,loc,~,prom] = findpeaks(thresh_rate,thresh_tvec);
     
@@ -56,12 +56,12 @@ function grad = peakGradient(spikes,temp,resting)
     p = polyfit(peak_tvec,peak_rate,1);
     grad = polyder(p);
       
-%     figure()
-%     plot(tvec,rate,'k');
-%     hold on
-%     plot(thresh_tvec,thresh_rate,'b');
-%     plot(peak_tvec(1),peak_rate(1),'*g')
-%     plot(peak_tvec,polyval(p,peak_tvec),'r')
-%    
+    figure()
+    plot(tvec,rate,'k');
+    hold on
+    plot(thresh_tvec,thresh_rate,'b');
+    plot(peak_tvec(1),peak_rate(1),'*g')
+    plot(peak_tvec,polyval(p,peak_tvec),'r')
+   
 
 end

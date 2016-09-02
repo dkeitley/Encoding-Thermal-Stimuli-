@@ -9,11 +9,14 @@ function testModel(theta,spikes,temps,resting)
         [p,dp,~] = getPoly(t,5);
         [rate,tvec] = getRate(s,0.25);
         rate = (rate-max(rate))/(max(rate));
+        rate = smooth(rate,3);
         temp_vals = polyval(p,tvec);
         dtemp_vals = polyval(dp,tvec);
         
         linear = theta(1)*temp_vals + theta(2)*dtemp_vals;      
-        predict = sigmoid(linear,theta(3),theta(4),theta(5));
+        predict = sigmoid(linear,theta(3),theta(4),theta(5),theta(6),theta(7),theta(8));
+        
+       
 
         subplot(3,ceil(m/3),i)
         plot(tvec,rate);

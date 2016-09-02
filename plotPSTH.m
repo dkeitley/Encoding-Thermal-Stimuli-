@@ -21,7 +21,7 @@ function rate = plotPSTH(spikes,binNum)
     rate = numSpikes/(binTime*numTrials);
     
     %Compute Fano Factor
-    fano_bin = floor(0.75*binNum);
+    fano_bin = floor(0.95*binNum);
     fano = (std(numSpikes_win(fano_bin,:))^2)/(mean(numSpikes_win(fano_bin,:)));
     disp(strcat('Fano Factor: ', num2str(fano)));
     

@@ -4,6 +4,7 @@ function [fileData,spikes,temp] = parseFile(num,txt,fileNum)
 
         dt = 5*10^-5;
         fileName = char(txt(fileNum+1,1));
+        disp(fileName);
         raw = load(fileName);
         structNames = fieldnames(raw);
         fileData = num(fileNum,:);
