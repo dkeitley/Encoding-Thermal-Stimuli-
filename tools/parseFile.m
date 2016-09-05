@@ -1,5 +1,5 @@
 
-% parses Spike data exported to Matlab, finds relevant channels
+% parses Spike2 exported Matlab files and finds relevant channels
 function [fileData,spikes,temp] = parseFile(num,txt,fileNum)
 
         dt = 5*10^-5;

@@ -1,3 +1,6 @@
+% Classifies each of the responses into either a rise, fall or plateau
+% response, based on centroids provided (i.e. from kmeans).  
+
 function [rise,fall,plat] = classify(spikes,temps,resting,centroids)
 
     m = size(spikes,2);

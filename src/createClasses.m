@@ -1,4 +1,5 @@
-%centroids returned in order of rise,fall,plat
+% Applies kmeans to objectively classify into rise, fall and 
+% plateau responses. Centroids returned in order of rise,fall,plat.
 
 function [rise,fall,plat,centroids]  = createClasses(spikes,temps,resting)
 

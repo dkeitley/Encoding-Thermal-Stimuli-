@@ -1,3 +1,4 @@
+% Loads data, classifies and models responses and generates Poisson spikes. 
 
 [spikes_A,temps_A,rest_A] = getData('/home/daniel/Encoding Thermal Stimuli/A fibre ramp positions.xlsx');
 [spikes_C,temps_C,rest_C] = getData('/home/daniel/Encoding Thermal Stimuli/C fibre ramp positions.xlsx');

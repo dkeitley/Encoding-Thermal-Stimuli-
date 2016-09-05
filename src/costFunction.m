@@ -1,16 +1,12 @@
+% Calculates the sum of the squared error between the actual and predicted 
+% firing rates.  
+
 function J = costFunction(theta,X,y)
 
     m = length(y);
     J = 0;
     cost = 0;
    
-    a = theta(1);
-    b = theta(2);
-%     x0 = theta(3);
-%     L = theta(4);
-%     k = theta(5);
-%     r0 = X(:,1);
-    
     A = theta(3);
     B = theta(4);
     C = theta(5);

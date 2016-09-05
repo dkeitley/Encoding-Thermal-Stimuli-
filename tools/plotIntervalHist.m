@@ -4,7 +4,7 @@ function plotIntervalHist(spikes,numBins,times)
     dt = 5*10^-5;
     edgeWidth = 0.2/numBins;
     edges = [0:edgeWidth:0.2,1];
-    %figure()
+    figure()
     
     if(nargin > 2)
         model_times = times;

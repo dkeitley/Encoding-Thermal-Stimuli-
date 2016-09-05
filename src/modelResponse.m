@@ -1,3 +1,6 @@
+% Uses the generateSpikes function to generate model spike times from the
+% predicted firing rate calculated from model parameters. 
+
 function S = modelResponse(theta,spikes,temp)
 
     binSize = 0.25; 
@@ -20,15 +23,14 @@ function S = modelResponse(theta,spikes,temp)
     tvec = [1:length(spikes)]'*dt;
     times = tvec(find(spikes == 1));
 
-    figure()
-    subplot(2,1,1)
-    plot(times,ones(size(times)),'+');
-    title('Data')
-    axis([0,max(tvec),0.9,1.1])
-    subplot(2,1,2)
-    plot(S,ones(size(S)),'+r')
-    title('Model')
-    axis([0,max(tvec),0.9,1.1])
-
+%     figure()
+%     subplot(2,1,1)
+%     plot(times,ones(size(times)),'+');
+%     title('Data')
+%     axis([0,max(tvec),0.9,1.1])
+%     subplot(2,1,2)
+%     plot(S,ones(size(S)),'+r')
+%     title('Model')
+%     axis([0,max(tvec),0.9,1.1])
 
 end

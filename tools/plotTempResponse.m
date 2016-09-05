@@ -1,3 +1,6 @@
+% Plots the firing rate as a function of temperature by calculating the
+% firing rate in every 1 degree bin. 
+
 function [tvec,rate] = plotTempResponse(spike,temp)
 
     temps = {};
@@ -12,10 +15,9 @@ function [tvec,rate] = plotTempResponse(spike,temp)
 
     numTrials = size(spikes',1);
     m = ceil(numTrials/6);
-    %figure()
+    figure()
     
      for trial = 1:numTrials
-         %find spikes times within 1 degree temp range
          [p,dp,tvec] = getPoly(temps{trial},5);
          temppoly = polyval(p,tvec);
          dtemppoly = polyval(dp,tvec);
@@ -38,7 +40,7 @@ function [tvec,rate] = plotTempResponse(spike,temp)
          rate = rate(1:range(end))';
          tvec = [20:size(rate,1)+19]';
          plot(tvec,rate);
-         %title(strcat('Trial',int2str(trial)));
+         title(strcat('Trial',int2str(trial)));
 
      end
 end

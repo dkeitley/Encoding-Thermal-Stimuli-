@@ -1,3 +1,5 @@
+% Creates stimulus and spike vecto
+
 function [spikes,temps,resting] = getData(fileName)
 
     [num,txt] = xlsread(fileName);
