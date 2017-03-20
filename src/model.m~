@@ -16,7 +16,7 @@ function [opt_theta,opt_cost] = model(spikes,temps,resting)
     opt_cost = Inf;
 
     for i = 1:75
-        initial = [-2 + rand*4,-3 + rand*6,-6+ rand*12,-6+rand*12,-35+rand*15,-10+rand*20,-10+rand*20,-10+rand*20]';
+        initial = [-10 + rand*20,-10 + rand*20,-2+ rand*2,-3+rand*3,-6+rand*3,-6+rand*3,-50+rand*15,-5+rand*3]';
         [theta,cost] = fminsearch(@(t)(costFunction(t,X,y)),initial);
 
         if(cost < opt_cost)

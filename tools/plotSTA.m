@@ -1,4 +1,4 @@
-%Plots the spike triggered average of length winSize for a given spike
+% Plots the spike triggered average of length winSize for a given spike
 % train and stimulus vector. The winSize is given in seconds. 
 
 function plotSTA(spikes,temps,winSize)

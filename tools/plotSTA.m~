@@ -1,11 +1,11 @@
 %Plots the spike triggered average of length winSize for a given spike
-% train and stimulus vector. The winSize is given in second
+% train and stimulus vector. The winSize is given in seconds. 
 
 function plotSTA(spikes,temps,winSize)
 
     numTrials = size(spikes,2);
     dt = 5*10^-5;
-    winSize = winSize/dt;
+    winSize = int32(winSize/dt);
     trialAvgs = zeros(numTrials,winSize);
     
     for trial = 1:numTrials

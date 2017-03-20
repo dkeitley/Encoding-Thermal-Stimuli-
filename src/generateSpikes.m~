@@ -1,4 +1,5 @@
-% Implementation of the acceptance-rejection method for generating events driven by an inhomogeneous Poisson process. 
+% Implementation of the acceptance-rejection method for generating events
+% driven by an inhomogeneous Poisson process. 
 
 function S = generateSpikes(rate_poly,lambda,T)
     n = 0;

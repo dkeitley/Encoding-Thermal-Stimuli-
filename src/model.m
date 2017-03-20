@@ -1,8 +1,6 @@
-% Minimises costFunction to give optimum parameter values for the training
-% data. 
+% Minimises costFunction to give optimum parameter values for the training data. 
 
-% theta takes the form a,b,x0,L,k where x0,L,k are sigmoid parameters and
-% a,b are coefficients of the temperature and its derivative respecitvely. 
+% theta takes the form a,b,A,B,C,K,M,Q where A,B,C,K,M,Q are sigmoid parameters and a,b are coefficients of the temperature and its derivative respecitvely. 
 
 function [opt_theta,opt_cost] = model(spikes,temps,resting)
     
@@ -10,7 +8,6 @@ function [opt_theta,opt_cost] = model(spikes,temps,resting)
     y = t(:,4);
     X = t(:,1:3);
    
-    %theta - a, b, x0, L, k
     % theta: a,b,A,B,C,K,M,Q
     opt_theta = [0;0;0;0;0;0;0;0];
     opt_cost = Inf;

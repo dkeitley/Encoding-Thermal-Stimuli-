@@ -1,5 +1,4 @@
-% Creates useable stimulus and spike vectors for each of the source files listed in
-% the excel data sheet. 
+% Creates useable stimulus and spike vectors for each of the source files listed in the excel data sheet. 
 
 function [spikes,temps,resting] = getData(fileName)
 
